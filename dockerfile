@@ -5,8 +5,6 @@ FROM php:8.3-cli-alpine
 LABEL maintainer="Mohamad Momeni"
 
 ENV TZ=Asia/Tehran
-RUN mkdir -p /var/www
-WORKDIR /var/www
 
 RUN apk add --no-cache --update supervisor nano tzdata openssl-dev libzip-dev zlib-dev libpng-dev freetype-dev libjpeg-turbo-dev $PHPIZE_DEPS libstdc++ libgcc && \
     docker-php-ext-configure gd --with-freetype --with-jpeg && \
@@ -26,4 +24,4 @@ COPY --from=composer /usr/bin/composer /usr/local/bin/composer
 Add ./supervisor.ini /etc/supervisor.d/custom.ini
 ADD ./php.ini /usr/local/etc/php/conf.d/custom.ini
 
-CMD ["/usr/bin/supervisord -n"]
+CMD ["sh", "-c", "/usr/bin/supervisord -n"]
