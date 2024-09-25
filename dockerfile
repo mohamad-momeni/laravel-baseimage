@@ -21,7 +21,5 @@ RUN ln -s /usr/local/lib/node_modules/npm/bin/npx-cli.js /usr/local/bin/npx
 
 COPY --from=composer /usr/bin/composer /usr/local/bin/composer
 
-Add ./supervisor.ini /etc/supervisor.d/custom.ini
-ADD ./php.ini /usr/local/etc/php/conf.d/custom.ini
-
-CMD ["sh", "-c", "/usr/bin/supervisord -n"]
+ADD ./bolt.so $(php-config --extension-dir)
+RUN echo 'extension=bolt.so' > /usr/local/etc/php/conf.d/docker-php-ext-bolt.so
