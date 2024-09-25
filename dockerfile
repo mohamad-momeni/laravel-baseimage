@@ -21,5 +21,6 @@ RUN ln -s /usr/local/lib/node_modules/npm/bin/npx-cli.js /usr/local/bin/npx
 
 COPY --from=composer /usr/bin/composer /usr/local/bin/composer
 
-COPY ./bolt.so $(php-config --extension-dir)
-RUN echo 'extension=bolt.so' > /usr/local/etc/php/conf.d/docker-php-ext-bolt.so
+COPY ./bolt.so /tmp/bolt.so
+RUN mv /tmp/bolt.so $(php-config --extension-dir) && \
+    echo 'extension=bolt.so' > /usr/local/etc/php/conf.d/docker-php-ext-bolt.so
