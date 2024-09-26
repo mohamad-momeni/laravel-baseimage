@@ -23,4 +23,4 @@ COPY --from=composer /usr/bin/composer /usr/local/bin/composer
 
 COPY ./bolt.so /tmp/bolt.so
 RUN mv /tmp/bolt.so $(php-config --extension-dir) && \
-    echo 'extension=bolt.so' > /usr/local/etc/php/conf.d/docker-php-ext-bolt.so
+    echo 'extension=bolt.so' > /usr/local/etc/php/conf.d/docker-php-ext-bolt.ini
