@@ -6,7 +6,7 @@ LABEL maintainer="Mohamad Momeni"
 
 ENV TZ=Asia/Tehran
 
-RUN apk add --no-cache --update supervisor nano tzdata openssl-dev libzip-dev zlib-dev libpng-dev freetype-dev libjpeg-turbo-dev $PHPIZE_DEPS libstdc++ libgcc && \
+RUN apk add --no-cache --update supervisor nano tzdata openssl-dev libzip-dev zlib-dev libpng-dev freetype-dev libjpeg-turbo-dev $PHPIZE_DEPS libstdc++ libgcc imap-dev krb5-dev && \
     docker-php-ext-configure gd --with-freetype --with-jpeg && \
     docker-php-ext-configure imap --with-kerberos --with-imap-ssl && \
     docker-php-ext-install pdo pdo_mysql zip gd pcntl imap && \
