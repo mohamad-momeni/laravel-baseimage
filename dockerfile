@@ -9,7 +9,7 @@ ENV TZ=Asia/Tehran
 RUN apk add --no-cache --update supervisor nano tzdata openssl-dev libzip-dev zlib-dev libpng-dev freetype-dev libjpeg-turbo-dev $PHPIZE_DEPS libstdc++ libgcc && \
     docker-php-ext-configure gd --with-freetype --with-jpeg && \
     docker-php-ext-configure imap --with-kerberos --with-imap-ssl && \
-    docker-php-ext-install -j$(nproc) pdo pdo_mysql zip gd pcntl imap && \
+    docker-php-ext-install pdo pdo_mysql zip gd pcntl imap && \
     pecl install redis && docker-php-ext-enable redis && \
     pecl install mongodb && docker-php-ext-enable mongodb && \
     pecl install swoole && docker-php-ext-enable swoole
